@@ -1,2 +1,1 @@
-# CMP105_W10
-CMP105 Lab 10 project
+Framework extended from 22/3 W10.
