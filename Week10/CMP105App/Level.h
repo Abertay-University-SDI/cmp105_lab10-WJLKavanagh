@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Framework/BaseLevel.h"
 #include "Framework/Input.h"
+#include "platformExample.h"
 #include <string>
 #include <iostream>
 
@@ -18,5 +19,11 @@ public:
 
 private:
 	// Default variables for level class.
-	
+	platformExample* tiles;
+	sf::Text text;
+	sf::Font font;
+	int currentVal;
+	sf::Texture previewTexture;
+	GameObject previewTile;
+	GameObject areaBG;
 };
