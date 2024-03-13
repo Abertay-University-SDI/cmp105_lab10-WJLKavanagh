@@ -1,7 +1,9 @@
 #include "platformExample.h"
+#include <iostream>
+#include <fstream>
 
 // Constructor takes name of file to load tileMap from.
-platformExample::platformExample(std::string fName) 
+platformExample::platformExample(const std::string& fName) 
 {
 	loadTexture("gfx/marioTiles.png");
 
@@ -31,7 +33,7 @@ platformExample::platformExample(std::string fName)
 
 // Take a csv or txt file and parse ints into tile map lookup values.
 // load in map dimensions from endLines and file length.
-std::vector<int> platformExample::loadFromFile(const std::string fName)
+std::vector<int> platformExample::loadFromFile(const std::string& fName)
 {
 	std::ifstream fileToOpen(fName);
 	std::vector<int> mapLoadedIn;
@@ -72,7 +74,7 @@ std::vector<int> platformExample::loadFromFile(const std::string fName)
 
 // Writes tileMap as .csv to <fName>.
 // fName should include folder, e.g. "maps/____.txt" or similar.m
-void platformExample::writeToFile(const std::string fName)
+void platformExample::writeToFile(const std::string& fName)
 {
 	std::ofstream fileToWrite(fName);
 
@@ -112,16 +114,16 @@ void platformExample::updateTile(sf::Vector2u pos, int val)
 	buildLevel();
 }
 
-sf::Texture platformExample::getTileTexture(int v)
+const sf::Texture* platformExample::getTileTexture(int v)
 {
 	if (v >= 0 && v < tileSet.size())
 	{
-		return *(tileSet[v].getTexture());
+		return (tileSet[v].getTexture());
 	}
 	else
 	{
 		// Return a default texture or handle the case of invalid tile value
 		// For now, returning an empty texture
-		return sf::Texture();
+		return nullptr; //would you prefer nullptr here?  this is base class texture can also load in a default if nullptr is unacceptable 
 	}
 }
